@@ -124,7 +124,12 @@ Enjoy!"#,
 				}
 			}
 
-			elgato::initialise_devices();
+			tokio::spawn(async {
+				loop {
+					elgato::initialise_devices().await;
+					tokio::time::sleep(std::time::Duration::from_secs(10)).await;
+				}
+			});
 			plugins::initialise_plugins();
 			application_watcher::init_application_watcher();
 
