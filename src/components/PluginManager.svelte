@@ -88,7 +88,7 @@
 		const path = await open({ multiple: false, directory: false });
 		if (!path) return;
 		const id = prompt("Plugin ID:");
-		if (!id || id.split(".").length < 3) {
+		if (!id || id.split(".").length < 3 || id.endsWith(".sdPlugin")) {
 			message("Invalid plugin ID", { title: `Failed to install "${id}"` });
 			return;
 		}
@@ -112,7 +112,7 @@
 	(async () => installed = await invoke("list_plugins"))();
 
 	let plugins: { [id: string]: GitHubPlugin };
-	(async () => plugins = await (await fetch("https://ninjadev64.github.io/openaction-plugins/catalogue.json")).json())();
+	(async () => plugins = await (await fetch("https://openactionapi.github.io/plugins/catalogue.json")).json())();
 
 	let search: string = "";
 
@@ -158,7 +158,7 @@
 						size="24"
 						color={document.documentElement.classList.contains("dark") ? "#C0BFBC" : "#77767B"}
 					/>
-				{:else}
+				{:else if !plugin.builtin}
 					<Trash
 						size="24"
 						color={document.documentElement.classList.contains("dark") ? "#C0BFBC" : "#77767B"}
@@ -198,7 +198,7 @@
 		<div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
 			{#each Object.entries(plugins) as [id, plugin]}
 				<ListedPlugin
-					icon="https://ninjadev64.github.io/openaction-plugins/icons/{id}.png"
+					icon="https://openactionapi.github.io/plugins/icons/{id}.png"
 					name={plugin.name}
 					subtitle={plugin.author}
 					hidden={!plugin.name.toUpperCase().includes(search.toUpperCase())}
