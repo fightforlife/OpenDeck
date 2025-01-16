@@ -50,8 +50,7 @@
 			}
 		},
 		"updater": {
-			"pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEYyMjBFNTdEOUI4MTMxN0EKUldSNk1ZR2JmZVVnOGlxdEZ5WnRYR0kvRU81bXdFQUtqbW1sTU1CL2o1T0dGOUN1SDdWTUU1VmsK",
-			"endpoints": ["https://github.com/ninjadev64/OpenDeck/releases/latest/download/latest.json"]
+			"active": false
 		}
 	},
 	"app": {
